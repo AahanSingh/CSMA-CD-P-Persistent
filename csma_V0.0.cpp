@@ -37,6 +37,8 @@ int wait_persistance[6];
 
 std::vector<int> send_stack[6];
 deque<int> read_queue[6];
+vector<int> send_frame[6];       // To store the frame so that we can send after the jamming 
+
                                     //LET 1 TIME SLOT BE 1 SECOND
 int status[6]={0,0,0,0,0,0};		//listen=0   read=1   send= 2   jam=3     send_wait=4
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,7 +50,7 @@ void backoff(int index)
 
         if(k[index]==5)
             {
-                send_stack.clear();
+                send_stack[index].clear();
                 status[index]=0;
             }
         k[index]++;
@@ -244,6 +246,8 @@ void next_step()
                 cout<<"\nThe frame to be sent:";
                 for(int i=0;i<xframe.size();i++)
                     cout<<xframe[i];
+
+                send_frame[xsender]=xframe;              //storing the frame before sending
 
                 status[xsender]=4;
                 send_stack[xsender]=xframe;
