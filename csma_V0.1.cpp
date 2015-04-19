@@ -489,7 +489,7 @@ flagF=5;
 //-----------------------------------------------------------------------------------------------------
                                                                         //IF jamming signal is detected - go to back off
 
-    if(status[0]==2|| status[0]==1)
+    if(status[0]==2)
         {
             if(transmission_line[index_A]<0)
                 {   backoff(0);
@@ -501,7 +501,7 @@ flagF=5;
                 }
         }
 
-    if(status[1]==2|| status[1]==1)
+    if(status[1]==2)
         {
             if(transmission_line[index_B]<0)
                 {   backoff(1);
@@ -512,7 +512,7 @@ flagF=5;
 
                 }
         }
-    if(status[2]==2|| status[2]==1)
+    if(status[2]==2)
         {
             if(transmission_line[index_C]<0)
                 {   backoff(2);
@@ -523,7 +523,7 @@ flagF=5;
 
                 }
         }
-    if(status[3]==2|| status[3]==1)
+    if(status[3]==2)
         {
             if(transmission_line[index_D]<0)
                 {   backoff(3);
@@ -534,7 +534,7 @@ flagF=5;
 
                 }
         }
-      if(status[4]==2|| status[4]==1)
+      if(status[4]==2)
         {
             if(transmission_line[index_E]<0)
                 {   backoff(4);
@@ -545,7 +545,7 @@ flagF=5;
 
                 }
         }
-     if(status[5]==2|| status[5]==1)
+     if(status[5]==2)
         {
             if(transmission_line[index_F]<0)
                 {   backoff(5);
@@ -555,6 +555,42 @@ flagF=5;
                     status[5]=4;
 
                 }
+        }
+
+        if(status[0]==1)
+        {    if(transmission_line[index_A]<0)
+                read_queue[0].clear();
+
+        }
+
+        if(status[1]==1)
+        {    if(transmission_line[index_B]<0)
+                read_queue[1].clear();
+
+        }
+
+        if(status[2]==1)
+        {    if(transmission_line[index_C]<0)
+                read_queue[2].clear();
+
+        }
+
+        if(status[3]==1)
+        {    if(transmission_line[index_D]<0)
+                read_queue[3].clear();
+
+        }
+
+        if(status[4]==1)
+        {    if(transmission_line[index_E]<0)
+                read_queue[4].clear();
+
+        }
+
+        if(status[5]==1)
+        {    if(transmission_line[index_F]<0)
+                read_queue[5].clear();
+
         }
 //-----------------------------------------------------------------------------------------------------
 
@@ -596,6 +632,7 @@ flagF=5;
             if(status[0]==3) 
             {       
                     send_stack[0].clear();
+                    read_queue[0].clear();
                     if(flagA!=0)
                         {  arrayA[index_A]=-99;
                             flagA--;
@@ -610,6 +647,7 @@ flagF=5;
             if(status[1]==3) 
             {
                     send_stack[1].clear();
+                    read_queue[1].clear();
                     if(flagB!=0)
                         {  arrayB[index_B]=-99;
                             flagB--;
@@ -623,6 +661,7 @@ flagF=5;
             if(status[2]==3) 
             {
                     send_stack[2].clear();
+                    read_queue[2].clear();
                     if(flagC!=0)
                         {  arrayC[index_C]=-99;
                             flagC--;
@@ -636,6 +675,7 @@ flagF=5;
             if(status[3]==3) 
             {
                     send_stack[3].clear();
+                    read_queue[3].clear();
                     if(flagD!=0)
                         {  arrayD[index_D]=-99;
                             flagD--;
@@ -649,6 +689,7 @@ flagF=5;
             if(status[4]==3) 
             {
                     send_stack[4].clear();
+                    read_queue[4].clear();
                     if(flagE!=0)
                         {  arrayE[index_E]=-99;
                             flagE--;
@@ -662,6 +703,7 @@ flagF=5;
             if(status[5]==3) 
             {
                     send_stack[5].clear();
+                    read_queue[5].clear();
                     if(flagF!=0)
                         {  arrayF[index_F]=-99;
                             flagF--;
