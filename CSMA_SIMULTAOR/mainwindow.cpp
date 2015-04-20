@@ -7,7 +7,7 @@
 #include<stdlib.h>
 #include<deque>
 #include<qstring.h>
-
+//***** ADD DISPLAY OF DATA AT LINE 383
 using namespace std;
 vector<int> setFrame(vector<int> data, int rec); //rec=decimal value
 int decode(vector<int> frame, int rec);
@@ -53,6 +53,8 @@ vector<int> send_frame[6];       // To store the frame so that we can send after
 int status[6]={0,0,0,0,0,0};        //listen=0   read=1   send= 2   jam=3     send_wait=4
 
 void next_step();
+int switchRec;
+vector<int> recData;
 
 
 
@@ -123,14 +125,15 @@ void MainWindow::on_pushButton_clicked()
     xsender=ui->comboBox_2->currentIndex();
     xreceiver=ui->comboBox->currentIndex();
     int temp=ui->textEdit_26->toPlainText().toInt();    //check here
+    QString str=ui->textEdit_26->toPlainText();
     int temp_inverted;
-    while(temp!=0)
+    while(temp!=0)                                      //inverting the input
         {
             temp_inverted=temp%10;
             temp_inverted=temp_inverted*10;
             temp=temp/10;
         }
-    while(temp_inverted!=0)
+    while(temp_inverted!=0)                             //bit by bit pushing into the vector
         {
             xdata.push_back(temp_inverted%10);
             temp_inverted=temp_inverted/10;
@@ -162,6 +165,7 @@ void MainWindow::on_pushButton_clicked()
     ui->textEdit_3->setPlainText(QString::number(transmission_line[22]));
     ui->textEdit_2->setPlainText(QString::number(transmission_line[23]));
     ui->textEdit->setPlainText(QString::number(transmission_line[24]));
+    ui->senderData->setPlainText(str);
 }
 
 void MainWindow::on_pushButton_2_clicked()
@@ -192,6 +196,16 @@ void MainWindow::on_pushButton_2_clicked()
     ui->textEdit_3->setPlainText(QString::number(transmission_line[22]));
     ui->textEdit_2->setPlainText(QString::number(transmission_line[23]));
     ui->textEdit->setPlainText(QString::number(transmission_line[24]));
+    if(switchRec==1)
+    {
+        QString tmp("");
+        for(int i=0;i<recData.size();i++)
+        {    tmp.append(QString::number(recData[i]));
+                cout<<recData[i];
+        }
+        ui->receiverData->setPlainText(tmp);
+        switchRec=0;
+    }
 }
 
 
@@ -218,7 +232,7 @@ void backoff(int index)
                 status[index]=0;
             }
         k[index]++;
-        int R=(pow(2,k[index]))-1;
+        int R=(pow(2.0,k[index]))-1;
         wait_persistance[index]= rand()%(R+ 1);
 
 }
@@ -232,16 +246,17 @@ float getrandom()           //GENERATES A RANDOM N.O. B/W 0->1
 void p_persistence(int index)
 {
     if(wait_persistance[index]==0)
-    {   float P=0.20;              // Akhil- As 0.015  is such a small number. The nodes will never send the data. I am assuming 20% as the prob (AAHANS -Probability that only node n will send is 1/(2^6))
+    {
+        float P=0.20;              // Akhil- As 0.015  is such a small number. The nodes will never send the data. I am assuming 20% as the prob (AAHANS -Probability that only node n will send is 1/(2^6))
         if(transmission_line[index]==0) //If line not idle goto backoff
         {
             float R=getrandom();
             if(R<=P)
-            {   status[index]=2;
+            {
+                status[index]=2;
                 k[index]=0;
             }
-            else
-               if(transmission_line[index]!=0)
+            else if(transmission_line[index]!=0)
                     backoff(index);
         }
     }
@@ -352,13 +367,12 @@ vector<int> setFrame(vector<int> data,int rec) //rec=decimal value
 // I will be sending the frame received to this decode function and then
 // let it decode and print. If the receiver code does not match
 // there will be no return /display. It will just ignore the message .
-
 void decode(deque<int> frame, int rec)
 {
     vector<int> data;
     int len=frame.size();
     int cmp=0;
-    for(int i=8;i<=10;i++)
+    for(int i=8;i<=10;i++)//cmp stores address of intended receiver
     {
         cmp*=10;
         cmp+=frame[i];
@@ -366,23 +380,19 @@ void decode(deque<int> frame, int rec)
     //cmp is in binary form
     int dec=0;
     int c=0;
-    while(cmp!=0)
+    while(cmp!=0)//calculating the decimal equivalent of address stored in cmp
     {
         int d=cmp%10;
-        dec+=d*pow(2,c);
+        dec+=d*pow(2.0,c);
         c++;
         cmp/=10;
     }
     //dec represent decimal form of cmp
-    if(rec==dec)
+    if(rec==dec)//if  "this" node is the receiver the display the data received.
     {
         for(int i=11;i<=frame.size()-9;i++)
-            data.push_back(frame[i]);
-
-        for(int x=0;x<data.size();x++)
-        {
-           // cout<<data[x];
-        }
+          data.push_back(frame[i]);
+        recData=data;
     }
 
 
@@ -400,7 +410,8 @@ void next_step()
 
 //-----------------------------------------------------------------------------------------------
             if(input_switch==1)                            //taking in the data
-            {   vector<int> xframe;
+            {
+                vector<int> xframe;
                 if(xsender==xreceiver)
                 {
                     //cout<<endl<<"STATION CANNOT SEND A MESSAGE TO ITSELF !!! " <<endl;
@@ -465,7 +476,7 @@ void next_step()
             arrayF[index_F]=0;
 
 
-            if(status[0]==2)                                        //pushing send stack or 0
+            if(status[0]==2)                                //pushing send stack or 0 [2:send mode] [Node 0]
                 {   if(send_stack[0].empty())
                        status[0]=0;
                     else
@@ -482,7 +493,7 @@ void next_step()
                 arrayA[index_A]=0;
 
 
-            if(status[1]==2)                                    //pushing send stack or 0
+            if(status[1]==2)                                 //pushing send stack or 0 [node 1]
                 {
                     if(send_stack[1].empty())
                        status[1]=0;
@@ -496,7 +507,7 @@ void next_step()
             else
                 arrayB[index_B]=0;
 
-            if(status[2]==2)                                            //pushing send stack or 0
+            if(status[2]==2)                                    //pushing send stack or 0
                 {
                     if(send_stack[2].empty())
                        status[2]=0;
