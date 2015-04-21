@@ -122,6 +122,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
+    ui->receiverData->clear();
     xsender=ui->comboBox_2->currentIndex();
     xreceiver=ui->comboBox->currentIndex();
     int temp=ui->textEdit_26->toPlainText().toInt();    //check here
@@ -393,6 +394,7 @@ void decode(deque<int> frame, int rec)
         for(int i=11;i<=frame.size()-9;i++)
           data.push_back(frame[i]);
         recData=data;
+        switchRec=1;
     }
 
 

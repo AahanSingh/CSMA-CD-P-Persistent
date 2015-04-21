@@ -64,7 +64,7 @@ public:
     QTextEdit *textEdit_3;
     QTextEdit *textEdit_16;
     QTextEdit *textEdit;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_7;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_4;
@@ -108,7 +108,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         label_5 = new QLabel(centralWidget);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(12, 363, 135, 16));
+        label_5->setGeometry(QRect(330, 360, 135, 16));
         label_5->setAlignment(Qt::AlignCenter);
         nodeA = new QLabel(centralWidget);
         nodeA->setObjectName(QStringLiteral("nodeA"));
@@ -262,10 +262,10 @@ public:
         textEdit->setGeometry(QRect(750, 332, 20, 20));
         textEdit->setMaximumSize(QSize(20, 20));
         textEdit->setReadOnly(true);
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(20, 20, 771, 151));
-        verticalLayout_7 = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(centralWidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(20, 20, 761, 271));
+        verticalLayout_7 = new QVBoxLayout(layoutWidget);
         verticalLayout_7->setSpacing(6);
         verticalLayout_7->setContentsMargins(11, 11, 11, 11);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
@@ -273,7 +273,7 @@ public:
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setSpacing(6);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        label_4 = new QLabel(widget);
+        label_4 = new QLabel(layoutWidget);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setAlignment(Qt::AlignCenter);
 
@@ -285,12 +285,12 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        comboBox_2 = new QComboBox(widget);
+        comboBox_2 = new QComboBox(layoutWidget);
         comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
 
         verticalLayout->addWidget(comboBox_2);
 
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setAlignment(Qt::AlignCenter);
 
@@ -302,12 +302,12 @@ public:
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        comboBox = new QComboBox(widget);
+        comboBox = new QComboBox(layoutWidget);
         comboBox->setObjectName(QStringLiteral("comboBox"));
 
         verticalLayout_2->addWidget(comboBox);
 
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setAlignment(Qt::AlignCenter);
 
@@ -319,12 +319,12 @@ public:
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        textEdit_26 = new QTextEdit(widget);
+        textEdit_26 = new QTextEdit(layoutWidget);
         textEdit_26->setObjectName(QStringLiteral("textEdit_26"));
 
         verticalLayout_3->addWidget(textEdit_26);
 
-        label_3 = new QLabel(widget);
+        label_3 = new QLabel(layoutWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setAlignment(Qt::AlignCenter);
 
@@ -333,7 +333,7 @@ public:
 
         horizontalLayout_2->addLayout(verticalLayout_3);
 
-        pushButton = new QPushButton(widget);
+        pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
         horizontalLayout_2->addWidget(pushButton);
@@ -350,12 +350,12 @@ public:
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        label_12 = new QLabel(widget);
+        label_12 = new QLabel(layoutWidget);
         label_12->setObjectName(QStringLiteral("label_12"));
 
         horizontalLayout_4->addWidget(label_12);
 
-        senderData = new QTextEdit(widget);
+        senderData = new QTextEdit(layoutWidget);
         senderData->setObjectName(QStringLiteral("senderData"));
 
         horizontalLayout_4->addWidget(senderData);
@@ -366,12 +366,12 @@ public:
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        label_13 = new QLabel(widget);
+        label_13 = new QLabel(layoutWidget);
         label_13->setObjectName(QStringLiteral("label_13"));
 
         horizontalLayout_3->addWidget(label_13);
 
-        receiverData = new QTextEdit(widget);
+        receiverData = new QTextEdit(layoutWidget);
         receiverData->setObjectName(QStringLiteral("receiverData"));
 
         horizontalLayout_3->addWidget(receiverData);
@@ -383,32 +383,12 @@ public:
         verticalLayout_7->addLayout(verticalLayout_6);
 
         MainWindow->setCentralWidget(centralWidget);
-        comboBox->raise();
-        comboBox_2->raise();
-        label->raise();
-        label_2->raise();
-        label_3->raise();
-        label_5->raise();
-        nodeA->raise();
         nodeB->raise();
         nodeC->raise();
         nodeD->raise();
         pushButton_2->raise();
-        textEdit_25->raise();
-        textEdit_24->raise();
-        label_4->raise();
-        textEdit_26->raise();
-        pushButton->raise();
-        label_4->raise();
         nodeE->raise();
         nodeF->raise();
-        textEdit_25->raise();
-        textEdit_25->raise();
-        senderData->raise();
-        receiverData->raise();
-        pushButton->raise();
-        label_12->raise();
-        label_13->raise();
         label_5->raise();
         textEdit_10->raise();
         textEdit_12->raise();
@@ -435,6 +415,8 @@ public:
         textEdit_3->raise();
         textEdit_16->raise();
         textEdit->raise();
+        layoutWidget->raise();
+        nodeA->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 800, 22));

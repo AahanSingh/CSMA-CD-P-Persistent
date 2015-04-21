@@ -41,8 +41,8 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>12</x>
-      <y>363</y>
+      <x>330</x>
+      <y>360</y>
       <width>135</width>
       <height>16</height>
      </rect>
@@ -638,13 +638,13 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>771</width>
-      <height>151</height>
+      <width>761</width>
+      <height>271</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -758,35 +758,12 @@
      </item>
     </layout>
    </widget>
-   <zorder>comboBox</zorder>
-   <zorder>comboBox_2</zorder>
-   <zorder>label</zorder>
-   <zorder>label_2</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_5</zorder>
-   <zorder>nodeA</zorder>
    <zorder>nodeB</zorder>
    <zorder>nodeC</zorder>
    <zorder>nodeD</zorder>
    <zorder>pushButton_2</zorder>
-   <zorder>textEdit_25</zorder>
-   <zorder>textEdit_24</zorder>
-   <zorder>label_4</zorder>
-   <zorder>textEdit_26</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>label_4</zorder>
-   <zorder>horizontalSpacer_2</zorder>
-   <zorder>horizontalSpacer_2</zorder>
-   <zorder>horizontalSpacer_3</zorder>
    <zorder>nodeE</zorder>
    <zorder>nodeF</zorder>
-   <zorder>textEdit_25</zorder>
-   <zorder>textEdit_25</zorder>
-   <zorder>senderData</zorder>
-   <zorder>receiverData</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>label_12</zorder>
-   <zorder>label_13</zorder>
    <zorder>label_5</zorder>
    <zorder>textEdit_10</zorder>
    <zorder>textEdit_12</zorder>
@@ -813,7 +790,8 @@
    <zorder>textEdit_3</zorder>
    <zorder>textEdit_16</zorder>
    <zorder>textEdit</zorder>
-   <zorder></zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>nodeA</zorder>
    <zorder></zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
